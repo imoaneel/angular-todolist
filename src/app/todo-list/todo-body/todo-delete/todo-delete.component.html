@@ -1,0 +1,7 @@
+<div class="todo-delete" *ngIf="item.deleteShow">
+
+<!-- <div class="todo-delete" *ngIf="deleteCounter % 2 !== 0"> -->
+  <!-- Ngif 結構型指令 -->
+  <div class="todo-btn"(click)="cancelDelete()">cancel</div>
+  <div class="todo-btn"(click)="deleteList()">delete</div>
+</div>

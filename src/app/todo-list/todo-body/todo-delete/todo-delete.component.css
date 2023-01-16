@@ -1,0 +1,16 @@
+.todo-btn {
+  width: 40px;
+  text-align: center;
+
+  margin: 12px;
+  padding: 4px 4px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  height: fit-content;
+}
+
+.todo-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

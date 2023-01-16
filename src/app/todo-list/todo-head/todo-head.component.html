@@ -1,0 +1,42 @@
+<div class="todoheader" #todoColor>
+  <!-- 內嵌繫結 interpolation  -->
+  <!-- <h2>{{ title }}</h2> -->
+  <!-- <a [href]="url">go!</a> -->
+  <!-- <a [attr.data-title]="title">data attribute!</a> -->
+  <!-- 屬性繫結 property binding  -->
+
+  <div class="todoInput">
+    <!-- 屬性型指令 NgStyle  方法一-->
+
+    <!-- <div
+    class="todoInput"
+    #todoColor
+    [style.background-color]="'hsl(' + 167 + 30 * this.counter + ', 100%, 50%)'"
+  > -->
+    <!-- 屬性型指令 NgStyle  方法二 (寶哥愛用)-->
+
+    <label for="todoWord">我的待辦</label>
+
+    <input
+      type="text"
+      [(ngModel)]="keyword"
+      #todoA
+      name="todoWord"
+      placeholder="請輸入待辦事項"
+    />
+    <button (click)="makeList(todoA.value)">建立!</button>
+    <!-- 範本範本參考變數 #todoA 可以直接參考到dom -->
+
+    <p>總字數：{{ todoA.value.length }}</p>
+    <div>
+      <button (click)="titleChange($event.altKey)">alt+click!</button>
+      <span>{{ establish }} </span>
+    </div>
+    <p>
+      <span [ngStyle]="textColor()">❤ ❤ ❤ ❤ </span>
+      <!-- 雙向繫結 two-way binding  使用[(ngModel)] -->
+      <button (click)="colorChange()">換顏色</button>
+      <!-- 事件繫結 event binding  -->
+    </p>
+  </div>
+</div>
