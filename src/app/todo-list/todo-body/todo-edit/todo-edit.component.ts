@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-todo-edit',
@@ -9,7 +9,13 @@ export class TodoEditComponent implements OnInit {
   @Input()
   item:any;
   editCounter:any;
+
+  @Output()
+  canceledit= new EventEmitter;
+  edit = new EventEmitter;
+
   constructor(){}
+
   ngOnInit(): void {
 
   }

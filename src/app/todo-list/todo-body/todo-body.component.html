@@ -8,8 +8,8 @@
       (deleteItem)="hideDelete($event)"
     ></app-todo-content>
 
-    <app-todo-edit [item]="item"  (delete)="doEdit($event)"
-    (cancel)="cancelEdit($event)" ></app-todo-edit>
+    <app-todo-edit [item]="item"  (edit)="doEdit($event)"
+    (canceledit)="cancelEdit($event)" ></app-todo-edit>
     <app-todo-delete
       [item]="item"
 
