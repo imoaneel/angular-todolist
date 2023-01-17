@@ -6,13 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./todo-content.component.css"],
 })
 export class TodoContentComponent implements OnInit {
-  @Input()
-  item: any;
+  @Input() item: any;
 
-  @Output()
-  priorityItem = new EventEmitter<any>();
-  editItem = new EventEmitter<any>();
-  deleteItem = new EventEmitter<any>();
+  @Output() priorityItem = new EventEmitter();
+  @Output() editItem = new EventEmitter();
+  @Output() deleteItem = new EventEmitter();
 
   constructor() {}
 
@@ -21,14 +19,16 @@ export class TodoContentComponent implements OnInit {
     console.log("prioritychange msg send", this.item);
   }
 
-  editHide() {
+  editShow() {
     this.editItem.emit(this.item);
     console.log("editbox msg send", this.item);
   }
-  deleteHide() {
+  deleteShow() {
     this.deleteItem.emit(this.item);
     console.log("deletebox msg send", this.item);
   }
+
+  
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-head',
@@ -11,8 +11,8 @@ export class TodoHeadComponent {
   keyword = "";
   counter =0;
   bgcolor = "hsl(167, 100%, 50%)";
-  todo = new EventEmitter<any>();
 
+@Output()todo = new EventEmitter();
 
   url = "https://www.pinterest.com/"
   titleChange(altKey: boolean){

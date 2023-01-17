@@ -1,19 +1,23 @@
 <div class="todolist">
   <div class="todo" *ngFor="let item of data">
     <app-todo-content
-      [id]="item.id"
       [item]="item"
       (priorityItem)="changePriority($event)"
-      (editItem)="hideEdit($event)"
-      (deleteItem)="hideDelete($event)"
-    ></app-todo-content>
+      (editItem)="showEdit($event)"
+      (deleteItem)="showDelete($event)"
+    >
+      <!-- [子層]="父層" input 父傳子 -->
+      <!-- (子層)="父層" output 子傳父 -->
+    </app-todo-content>
 
-    <app-todo-edit [item]="item"  (edit)="doEdit($event)"
-    (canceledit)="cancelEdit($event)" ></app-todo-edit>
+    <app-todo-edit
+      [item]="item"
+      (edit)="editItem($event)"
+      (canceledit)="cancelEdit($event)"
+    ></app-todo-edit>
     <app-todo-delete
       [item]="item"
-
-      (delete)="doDelete($event)"
+      (delete)="deleteItem($event)"
       (cancel)="cancelDelete($event)"
     ></app-todo-delete>
   </div>

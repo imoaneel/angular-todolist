@@ -16,27 +16,30 @@
     <!-- 屬性型指令 NgStyle  方法二 (寶哥愛用)-->
 
     <label for="todoWord">我的待辦</label>
-
-    <input
-      type="text"
-      [(ngModel)]="keyword"
-      #todoA
-      name="todoWord"
-      placeholder="請輸入待辦事項"
-    />
-    <button (click)="makeList(todoA.value)">建立!</button>
-    <!-- 範本範本參考變數 #todoA 可以直接參考到dom -->
-
-    <p>總字數：{{ todoA.value.length }}</p>
-    <div>
-      <button (click)="titleChange($event.altKey)">alt+click!</button>
-      <span>{{ establish }} </span>
-    </div>
-    <p>
-      <span [ngStyle]="textColor()">❤ ❤ ❤ ❤ </span>
+    <div class="setTodo">
+      <input
+        type="text"
+        [(ngModel)]="keyword"
+        #todoA
+        name="todoWord"
+        placeholder="請輸入待辦事項"
+      />
       <!-- 雙向繫結 two-way binding  使用[(ngModel)] -->
-      <button (click)="colorChange()">換顏色</button>
-      <!-- 事件繫結 event binding  -->
-    </p>
+      <button (click)="makeList(todoA.value)">建立!</button>
+      <!-- 範本範本參考變數 #todoA 可以直接參考到dom -->
+    </div>
+
+    <div class="test">
+      <p>總字數：{{ todoA.value.length }}</p>
+      <div>
+        <button (click)="titleChange($event.altKey)">alt+click!</button>
+        <span>{{ establish }} </span>
+      </div>
+      <p>
+        <span [ngStyle]="textColor()">❤ ❤ ❤ ❤ </span>
+        <button (click)="colorChange()">換顏色</button>
+        <!-- 事件繫結 event binding  -->
+      </p>
+    </div>
   </div>
 </div>

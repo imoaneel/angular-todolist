@@ -1,121 +1,96 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output,EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-todo-body',
-  templateUrl: './todo-body.component.html',
-  styleUrls: ['./todo-body.component.css'],
+  selector: "app-todo-body",
+  templateUrl: "./todo-body.component.html",
+  styleUrls: ["./todo-body.component.css"],
 })
-export class TodoBodyComponent implements OnInit {
-  data: Array<any> = [];
-
+export class TodoBodyComponent {
+  @Input() data: any;
+  @Output() newData = new EventEmitter();
   constructor() {}
-  doEdit(item: any) {
-    console.log('item', item);
-    this.data.filter((v) => {
-      return v.content = item.content;
-      // 這邊還沒好好寫
+
+  // todo-content
+  changePriority(PriorityItem: any) {
+    this.data.map((item: any) => {
+      if (item.id === PriorityItem.id) {
+        item.priority++;
+        console.log("changePriority", item.id, item.priority);
+      }
+      return this.data;
     });
+    this.newData.emit(this.data);
   }
-  cancelEdit(item: any) {
-    console.log('item', item);
-    this.data.map((v) => {
-      if (v.id === item.id) {
-        v.editShow = !v.editShow;
+  showEdit(editItem: any) {
+    this.data.map((item: any) => {
+      if (item.id === editItem.id) {
+        item.editShow = !item.editShow;
+        item.deleteShow = false;
+      }
+    });
+    this.newData.emit(this.data);
+
+  }
+  showDelete(deleteItem: any) {
+    this.data.map((item: any) => {
+      if (item.id === deleteItem.id) {
+        item.deleteShow = !item.deleteShow;
+        item.editShow = false;
+      }
+    });
+    this.newData.emit(this.data);
+
+  }
+
+  // edit
+  editItem(editItem: any) {
+    this.data = this.data.map((item: any) => {
+      if (item.id === editItem.id) {
+        item.content = editItem.content;
+        // 以上方法 寶哥不建議使用
+        // 因為怕其他子元件不知道這份資料的屬性被改動
+
+        return Object.assign({}, item, editItem);
+        // 寶哥推薦這個做法
+        // 建立一個新物件 把item複製過去 editItem再進行覆蓋
+      }
+      return item;
+    });
+    console.log("edititem", editItem);
+    this.newData.emit(this.data);
+
+  }
+
+  cancelEdit(editItem: any) {
+    console.log("editItem", editItem);
+    this.data.map((item: any) => {
+      if (item.id === editItem.id) {
+        item.editShow = !item.editShow;
       }
       return;
     });
+    this.newData.emit(this.data);
+
   }
-  doDelete(item: any) {
-    console.log('item', item);
-    this.data.filter((v) => {
-      return v.id !== item.id;
+
+  // delete
+  deleteItem(deleteItem: any) {
+    console.log("deleteItem", deleteItem);
+    this.data = this.data.filter((item: any) => {
+      return item.id !== deleteItem.id;
     });
+    this.newData.emit(this.data);
+
   }
   cancelDelete(item: any) {
-    console.log('item', item);
-    this.data.map((v) => {
-      if (v.id === item.id) {
-        v.deleteShow = !v.deleteShow;
+    console.log("item", item);
+    this.data.map((item: any) => {
+      if (item.id === item.id) {
+        item.deleteShow = !item.deleteShow;
       }
-      return;
+      return this.data;
     });
-  }
-  changePriority(item: any) {
-    this.data.map((v) => {
-      if (v.id === item.id) {
-        v.priority++;
-        console.log(v.id, v.priority);
-      }
-      return;
-    });
-  }
-  hideEdit(item: any) {
-    this.data.map((v) => {
-      if (v.id === item.id) {
-        v.editShow = !v.editShow;
-      }
-    });
-  }
-  hideDelete(item: any) {
-    this.data.map((v) => {
-      if (v.id === item.id) {
-        v.deleteShow = !v.deleteShow;
-      }
-    });
-  }
+    this.newData.emit(this.data);
 
-  ngOnInit(): void {
-    this.data = [
-      {
-        id: 1,
-        content: '餵貓',
-        priority: 3,
-        editShow: false,
-        deleteShow: false,
-      },
-      {
-        id: 2,
-        content: '看漫畫',
-        priority: 2,
-        editShow: false,
-        deleteShow: false,
-      },
-      {
-        id: 3,
-        content: '寫程式',
-        priority: 1,
-        editShow: false,
-        deleteShow: false,
-      },
-      {
-        id: 4,
-        content: '買牛奶',
-        priority: 2,
-        editShow: false,
-        deleteShow: false,
-      },
-      {
-        id: 5,
-        content: '蝦皮取貨',
-        priority: 1,
-        editShow: false,
-        deleteShow: false,
-      },
-
-      {
-        id: 6,
-        content: '洗衣服',
-        priority: 2,
-        editShow: false,
-        deleteShow: false,
-      },
-      {
-        id: 7,
-        content: '吃藥',
-        priority: 4,
-        editShow: false,
-        deleteShow: false,
-      },
-    ];
   }
 }

@@ -1,11 +1,11 @@
-<div *ngIf="item.deleteShow">
+<div *ngIf="item.editShow" class="todo-edit">
   <!-- <div
 [class.hide]="editCounter % 2 == 0"
 [class.todo-edit]="editCounter % 2 !== 0"
 > -->
   <!-- 屬性型指令 NgClass 方法二 -->
-  <input type="text" name="todoEdit" />
-  <div class="todo-btn">
+  <input type="text" name="todoEdit" #todoEdit [value]="editContent"/>
+  <div class="todo-btn" (click)="editCancel()">
     <svg
       width="24px"
       height="24px"
@@ -23,5 +23,22 @@
       />
     </svg>
   </div>
-  <div class="todo-btn">save</div>
+  <div class="todo-btn" (click)="editConfirm(todoEdit.value)">
+    <svg
+      width="24px"
+      height="24px"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="{1.5}"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 12.75l6 6 9-13.5"
+      />
+    </svg>
+  </div>
 </div>

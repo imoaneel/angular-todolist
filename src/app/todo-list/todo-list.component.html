@@ -1,2 +1,2 @@
-<app-todo-head></app-todo-head>
-<app-todo-body></app-todo-body>
+<app-todo-head (todo) ="makeTodo($event)"></app-todo-head>
+<app-todo-body [data] = "data" (newData) = "newData($event)"></app-todo-body>
