@@ -18,9 +18,9 @@ export class TodoListComponent implements OnInit {
   makeTodo(todo: string) {
     this.newTodoList.content = todo;
   }
-  newData(newDataList: any) {
-    this.data = newDataList;
-    console.log(newDataList)
+  newDatalist(datalist: any) {
+    this.data = datalist;
+    console.log(datalist)
   }
   ngOnInit(): void {
     this.data = [

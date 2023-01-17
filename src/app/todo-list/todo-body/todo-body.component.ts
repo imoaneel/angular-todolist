@@ -82,10 +82,10 @@ export class TodoBodyComponent {
     this.newData.emit(this.data);
 
   }
-  cancelDelete(item: any) {
-    console.log("item", item);
+  cancelDelete(deleteItem: any) {
+    console.log("deleteItem",deleteItem);
     this.data.map((item: any) => {
-      if (item.id === item.id) {
+      if (item.id === deleteItem.id) {
         item.deleteShow = !item.deleteShow;
       }
       return this.data;
