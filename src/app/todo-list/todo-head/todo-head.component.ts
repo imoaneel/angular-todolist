@@ -1,38 +1,35 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-todo-head',
-  templateUrl: './todo-head.component.html',
-  styleUrls: ['./todo-head.component.css']
+  selector: "app-todo-head",
+  templateUrl: "./todo-head.component.html",
+  styleUrls: ["./todo-head.component.css"],
 })
 export class TodoHeadComponent {
-  title = 'todolist';
-  establish = ' (́◉◞౪◟◉‵)';
+  title = "todolist";
+  establish = " (́◉◞౪◟◉‵)";
   keyword = "";
-  counter =0;
+  counter = 0;
   bgcolor = "hsl(167, 100%, 50%)";
+  @Input() data: any;
+  @Output() todo = new EventEmitter();
 
-@Output()todo = new EventEmitter();
-
-  url = "https://www.pinterest.com/"
-  titleChange(altKey: boolean){
-    if(altKey){
-
-      this.establish = ' (′≖◞౪◟≖)'
-
+  url = "https://www.pinterest.com/";
+  titleChange(altKey: boolean) {
+    if (altKey) {
+      this.establish = " (′≖◞౪◟≖)";
     }
   }
-  makeList(todoA:string){
-    this.todo.emit(todoA)
-    console.log("#todoA",todoA)
+  makeList(todoA: string) {
+    this.todo.emit(todoA);
+    console.log("#todoA", todoA);
+    this.keyword = "";
   }
-  colorChange(){
+  colorChange() {
     this.counter++;
   }
-  textColor(){
-    let hslcolor =`hsl(167 + ${ 30 * this.counter}, 100%, 50%)`;
-    return{"color": `hsl( ${ 167 + 30 * this.counter}, 100%, 50%)`}
-
+  textColor() {
+    let hslcolor = `hsl(167 + ${30 * this.counter}, 100%, 50%)`;
+    return { color: `hsl( ${167 + 30 * this.counter}, 100%, 50%)` };
   }
-
 }

@@ -47,10 +47,12 @@ export class TodoBodyComponent {
     this.data = this.data.map((item: any) => {
       if (item.id === editItem.id) {
         item.content = editItem.content;
+        item.editShow = !item.editShow;
+
         // 以上方法 寶哥不建議使用
         // 因為怕其他子元件不知道這份資料的屬性被改動
 
-        return Object.assign({}, item, editItem);
+        // return Object.assign({}, item, editItem);
         // 寶哥推薦這個做法
         // 建立一個新物件 把item複製過去 editItem再進行覆蓋
       }
